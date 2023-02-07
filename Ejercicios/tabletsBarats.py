@@ -1,9 +1,14 @@
 def save_dict(lines):
     dic = {}
     for line in lines:
-        data = line.split("; ")
-        dict_aux = {"brand": data[0], "model": data[1], "CPU": data[2], "speed": int(data[3]), "price": float(data[4][:-1])}
-        dic.update({data[0][:3] + "-" + data[1]: dict_aux})
+        data = line.split(";")
+        data_clean = []
+        for word in data:
+            word = word.replace(" ", "")
+            data_clean.append(word)
+        dict_aux = {"brand": data_clean[0], "model": data_clean[1], "CPU": data_clean[2], "speed": int(data_clean[3]), "price": float(data_clean[4][:-1])}
+        print(dict_aux)
+        dic.update({data_clean[0][:3] + "-" + data_clean[1]: dict_aux})
     return dic
 
 def tabletsBarats (nomf1, nomf2, p):
